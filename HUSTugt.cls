@@ -40,7 +40,7 @@
 \xeCJKsetcharclass{"2E80}{"FFFF}{1}
 
 % List bibliography in ToC
-\RequirePackage{tocbibind}
+\RequirePackage[nottoc]{tocbibind}
 
 % Set the layout
 \setlength{\textwidth}{\paperwidth}
@@ -100,14 +100,14 @@
 % 表格中的字体比正文小半号，为大五号，11pt，同时表格中的行距为 1.4 倍行距
 
 % 重定义 tabular 环境
-\let\HUST@tabular\tabular
-\renewcommand\tabular{\dawu[1.4]\HUST@tabular}
-\let\endHUST@tabular\endtabular
+% \let\HUST@tabular\tabular
+% \renewcommand\tabular{\dawu[1.4]\HUST@tabular}
+% \let\endHUST@tabular\endtabular
 
 % 重定义 tabular* 环境
-\@namedef{tabular*}#1{\dawu[1.4]%
-  \setlength\dimen@{#1}%
-  \edef\@halignto{to\the\dimen@}\@tabular}
+% \@namedef{tabular*}#1{\dawu[1.4]%
+%   \setlength\dimen@{#1}%
+%   \edef\@halignto{to\the\dimen@}\@tabular}
 
 % 设置标题样式
 \long\def\@makecaption#1#2{%
@@ -156,16 +156,61 @@
 % Customize cover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\makecover}{
+  \begin{titlepage}
+    \HUST@ctitlepage
+  \end{titlepage}
   \pagenumbering{Roman}
   % \begin{titlepage}
     % \HUST@ctitlepage
     % \clearpage\thispagestyle{empty}\HUST@etitlepage
   % \end{titlepage}
+  \addtocontents{toc}{\cftpagenumberson{chapter}}
   \HUST@makeabstract
   \clearpage
-  \phantomsection
   \tableofcontents
   \mainmatter
+}
+
+
+\newcommand{\college}[1]{\renewcommand{\HUST@college}{#1}}
+\newcommand{\HUST@college}{}
+\newcommand{\department}[1]{\renewcommand{\HUST@department}{#1}}
+\newcommand{\HUST@department}{}
+\newcommand{\teacher}[1]{\renewcommand{\HUST@teacher}{#1}}
+\newcommand{\HUST@teacher}{}
+\newcommand{\stunumber}[1]{\renewcommand{\HUST@stunumber}{#1}}
+\newcommand{\HUST@stunumber}{}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\HUST@ctitlepage}{
+  \begin{center}
+    % Upper part of the page
+    \includegraphics[width=0.4\textwidth]{hust-flash-eps-crop.eps}\\[1cm]    
+
+    \textsc{\zihao{-0} 毕业设计[论文]}\\[1.5cm]
+
+    % Title
+    \HRule \\[0.6cm]
+    { \huge \bfseries \@title}
+
+    \HRule \\[5.5cm]
+
+    {\zihao{4}
+    % Author and supervisor
+      \begin{tabular}{r @{：} l}
+        院\hspace{2em}系 & \HUST@college\\
+        专\hspace{2em}业 & \HUST@department\\
+        姓\hspace{2em}名 & \@author\\
+        学\hspace{2em}号 & \HUST@stunumber\\
+        指导教师 & \HUST@teacher\\
+      \end{tabular}
+    }
+    \vfill
+
+    % Bottom of the page
+    {\large \today}
+
+  \end{center}
 }
 
 \newcommand{\cabstract}[1]{\renewcommand{\HUST@cabstract}{#1}}
@@ -177,42 +222,42 @@
 \newcommand{\ekeywords}[1]{\renewcommand{\HUST@ekeywords}{#1}}
 \newcommand{\HUST@ekeywords}{}
 
-% 定义中英文摘要
+% Abstract
 \newcommand{\HUST@makeabstract}{%
 
-  % 定义中文摘要
+  % Chinese abstract
   \clearpage
   \setcounter{page}{1}
   \phantomsection
-  \addtocontents{toc}{\cftpagenumberson{chapter}}
   \addcontentsline{toc}{chapter}{摘~~~~要}
   \chapter*{\abstractname}
   \HUST@cabstract
 
   \vspace{3ex}
-  \noindent\begin{HUST@tabular}{@{}p{4em}@{}p{\textwidth-4em}}
+  \noindent\begin{tabular}{@{}p{4em}@{}p{\textwidth-4em}}
     {\bf 关键词:} & \HUST@ckeywords \\
-  \end{HUST@tabular}
+  \end{tabular}
   
-  % 定义英文摘要
+  % English abstract
   \clearpage
   \phantomsection
   \addcontentsline{toc}{chapter}{Abstract}
-  \addtocontents{toc}{\cftpagenumbersoff{chapter}}
   \normalsize
   \chapter*{Abstract}
   \HUST@eabstract
 
   \vspace{3ex}
-  \noindent\begin{HUST@tabular}{@{}p{5em}@{}p{\textwidth-5em}}
+  \noindent\begin{tabular}{@{}p{5em}@{}p{\textwidth-5em}}
     {\bf Keywords:} & \HUST@ekeywords\\
-  \end{HUST@tabular}
+  \end{tabular}
 }
 
 \renewcommand\mainmatter{%
   \clearpage
   \@mainmattertrue
-  \pagenumbering{arabic}}
+  \addtocontents{toc}{\cftpagenumbersoff{chapter}}
+  \pagenumbering{arabic}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -242,6 +287,7 @@
 
 % chapter
 % \def\@makechapterhead#1{%
+
 \renewcommand{\@makechapterhead}[1]{%
   \vspace*{24bp}%
   \begingroup
@@ -308,6 +354,24 @@
 \renewcommand{\cftsecfont}{\zihao{-4}\rm}
 \renewcommand{\cftsecpagefont}{\zihao{-4}\rm}
 \setlength{\cftsecindent}{0em}
+
+
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage}
+% \fancyhead{} % clear all header fields
+% \fancyfoot{} % clear all footer fields
+% \fancyfoot[RE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{} % clear all header and footer fields
+  \fancyfoot[R]{\thepage} % except the center
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Rename English phases to Chinese ones
