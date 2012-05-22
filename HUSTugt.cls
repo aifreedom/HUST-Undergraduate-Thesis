@@ -39,6 +39,9 @@
 \xeCJKsetcharclass{"0}{"2E7F}{0}
 \xeCJKsetcharclass{"2E80}{"FFFF}{1}
 
+% List bibliography in ToC
+\RequirePackage{tocbibind}
+
 % Set the layout
 \setlength{\textwidth}{\paperwidth}
 \setlength{\textheight}{\paperheight} 
@@ -154,10 +157,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\makecover}{
   \pagenumbering{Roman}
-  \begin{titlepage}
+  % \begin{titlepage}
     % \HUST@ctitlepage
     % \clearpage\thispagestyle{empty}\HUST@etitlepage
-  \end{titlepage}
+  % \end{titlepage}
   \HUST@makeabstract
   \clearpage
   \phantomsection
@@ -185,7 +188,8 @@
   \addcontentsline{toc}{chapter}{摘~~~~要}
   \chapter*{\abstractname}
   \HUST@cabstract
-  \\[3ex]
+
+  \vspace{3ex}
   \noindent\begin{HUST@tabular}{@{}p{4em}@{}p{\textwidth-4em}}
     {\bf 关键词:} & \HUST@ckeywords \\
   \end{HUST@tabular}
@@ -198,7 +202,8 @@
   \normalsize
   \chapter*{Abstract}
   \HUST@eabstract
-  \\[3ex]
+
+  \vspace{3ex}
   \noindent\begin{HUST@tabular}{@{}p{5em}@{}p{\textwidth-5em}}
     {\bf Keywords:} & \HUST@ekeywords\\
   \end{HUST@tabular}
@@ -236,7 +241,8 @@
 % }
 
 % chapter
-\def\@makechapterhead#1{%
+% \def\@makechapterhead#1{%
+\renewcommand{\@makechapterhead}[1]{%
   \vspace*{24bp}%
   \begingroup
   \bf \zihao{3} \centering
@@ -249,7 +255,8 @@
   \vskip 20bp
 }
 
-\def\@makeschapterhead#1{%
+% \def\@makeschapterhead#1{%
+\renewcommand{\@makeschapterhead}[1]{%
   \vspace*{24bp}%
   \begingroup
   \bf \zihao{3} \centering
@@ -258,7 +265,6 @@
   \nobreak
   \vskip 20bp
 }
-
 
 % section
 \def\@seccntformat#1{\csname the#1\endcsname\hskip 1em\relax}
@@ -272,6 +278,10 @@
   {12bp}%
   {6bp}%
   {\bf\zihao{-4}}}
+
+% appendix
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Customize format for entries in table of contents
