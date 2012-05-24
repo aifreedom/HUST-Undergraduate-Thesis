@@ -4,7 +4,7 @@
 
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{book}}
 \ProcessOptions
-\LoadClass[12pt, a4paper, openany]{book}
+\LoadClass[12pt, a4paper, openany, nocap]{ctexbook}
 
 \RequirePackage{ifthen}
 \RequirePackage{calc}
@@ -30,9 +30,6 @@
 \setsansfont[Mapping=tex-text]{Helvetica}
 \setmonofont{Courier}
 
-% Require xeCJK
-\RequirePackage{ctex}
-% \RequirePackage[BoldFont, CJKmath]{xeCJK}
 \setCJKmainfont[ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont{SimHei}
 \setCJKmonofont*{Fangsong}
@@ -45,8 +42,8 @@
 % Set the layout
 \setlength{\textwidth}{\paperwidth}
 \setlength{\textheight}{\paperheight} 
-\setlength\marginparwidth{0cm} 
-\setlength\marginparsep{0cm} 
+\setlength{\marginparwidth}{0cm} 
+\setlength{\marginparsep}{0cm} 
 \addtolength{\textwidth}{-5.6cm} 
 \setlength{\oddsidemargin}{2.8cm-1in} 
 \setlength{\evensidemargin}{\oddsidemargin} 
@@ -229,8 +226,8 @@
   \clearpage
   \setcounter{page}{1}
   \phantomsection
-  \addcontentsline{toc}{chapter}{摘~~~~要}
-  \chapter*{\abstractname}
+  \addcontentsline{toc}{chapter}{摘\hspace{2em}要}
+  \chapter*{摘\hspace{2em}要}
   \HUST@cabstract
 
   \vspace{3ex}
@@ -267,63 +264,12 @@
 % Support chapter(0), section(1), subsection(2)
 \setcounter{secnumdepth}{2}
 
-% \def\@chapter[#1]#2{
-%   \ifnum \c@secnumdepth >\m@ne
-%   \if@mainmatter
-%   \refstepcounter{chapter}%
-%   \typeout{\@chapapp.}%
-%   \addcontentsline{toc}{chapter}
-%   {\protect\numberline{\thechapter}#1}%
-%   \else
-%   \addcontentsline{toc}{chapter}{#1}%
-%   \fi
-%   \else
-%   \addcontentsline{toc}{chapter}{#1}%
-%   \fi
-%   \chaptermark{#1}%
-%   \@makechapterhead{#2}%
-%   \@afterheading
-% }
-
-% chapter
-% \def\@makechapterhead#1{%
-
-\renewcommand{\@makechapterhead}[1]{%
-  \vspace*{24bp}%
-  \begingroup
-  \bf \zihao{3} \centering
-  \ifnum \c@secnumdepth >\m@ne
-  \thechapter\hskip1em
-  \fi
-  \interlinepenalty\@M
-  #1\par\endgroup
-  \nobreak
-  \vskip 20bp
-}
-
-% \def\@makeschapterhead#1{%
-\renewcommand{\@makeschapterhead}[1]{%
-  \vspace*{24bp}%
-  \begingroup
-  \bf \zihao{3} \centering
-  \interlinepenalty\@M
-  #1\par\endgroup
-  \nobreak
-  \vskip 20bp
-}
-
-% section
-\def\@seccntformat#1{\csname the#1\endcsname\hskip 1em\relax}
-\renewcommand\section{\@startsection {section}{1}{\z@}%
-  {18bp}%
-  {6bp}%
-  {\bf\zihao{4}}}
-
-% subsection
-\renewcommand\subsection{\@startsection {subsection}{2}{\z@}%
-  {12bp}%
-  {6bp}%
-  {\bf\zihao{-4}}}
+\CTEXsetup[name={,}, format={\centering}, titleformat={\zihao{-3}\bfseries}, 
+numberformat={\zihao{-3}\bfseries}, aftername={\quad}]{chapter}
+\CTEXsetup[name={,}, format={}, titleformat={\zihao{4}\bfseries}, 
+numberformat={\zihao{4}\bfseries}, aftername={\quad}]{section}
+\CTEXsetup[name={,}, format={}, titleformat={\zihao{-4}\bfseries}, 
+numberformat={\zihao{-4}\bfseries}, aftername={\quad}]{subsection}
 
 % appendix
 
@@ -377,20 +323,29 @@
 % Rename English phases to Chinese ones
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand\contentsname{目\hspace{1em}录}
-\renewcommand\listfigurename{插图索引}
-\renewcommand\listtablename{表格索引}
+\CTEXoptions[
+contentsname = {目\hspace{2em}录},
+listtablename = {表格索引},
+listfigurename = {插图索引},
+bibname = {参考文献},
+abstractname = {摘\hspace{2em}要},
+indexname = {索引},
+figurename = {图},
+tablename = {表},
+today = big]
 
-\@ifundefined{chapter}
-  {\renewcommand\refname{参考文献}}
-  {\renewcommand\bibname{参考文献}}
+\newcommand{\@eabstractname}{Abstract}
+\newcommand{\equname}{式}
 
-\renewcommand\indexname{索引}
-\renewcommand\figurename{图}
-\renewcommand\tablename{表}
-\newcommand\equname{式}
+% \renewcommand\contentsname{目\hspace{2em}录}
+% \renewcommand\listfigurename{插图索引}
 
-\renewcommand\appendixname{附录}
+% {\renewcommand\refname{参考文献}}
+% {\renewcommand\bibname{参考文献}}
 
-\newcommand{\abstractname}{摘\hspace{1em}要}
-\newcommand{\eabstractname}{Abstract}
+% \renewcommand\indexname{索引}
+% \renewcommand\figurename{图}
+% \renewcommand\tablename{表}
+
+
+
