@@ -20,7 +20,10 @@
 \ProvidesClass{HUSTugt}
 [2012/05/24 0.3 Huazhong University of Science and Technology Undergraduate Thesis]
 
+\newif\ifHUST@LMMath
+\DeclareOption{LM-Math}{\HUST@LMMathtrue}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{book}}
+
 \ProcessOptions
 \LoadClass[12pt, a4paper, openany, nocap]{ctexbook}
 
@@ -47,7 +50,9 @@
 \setmainfont[Mapping=tex-text]{Times New Roman}
 \setsansfont[Mapping=tex-text]{Helvetica}
 \setmonofont{Courier}
-\setmainfont{TeX Gyre Pagella}
+\ifHUST@LMMath
+  \setmathrm{Latin Modern Math}
+\fi
 
 \setCJKmainfont[ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont{SimHei}
