@@ -47,6 +47,7 @@
 \setmainfont[Mapping=tex-text]{Times New Roman}
 \setsansfont[Mapping=tex-text]{Helvetica}
 \setmonofont{Courier}
+\setmainfont{TeX Gyre Pagella}
 
 \setCJKmainfont[ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont{SimHei}
