@@ -114,63 +114,47 @@
 % Text font is Xiaosi(12 pt), line height is 15 pt (15/12 = 1.25)
 % \renewcommand\normalsize{\fontsize{12pt}{15pt}\selectfont}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% 定制浮动图形和表格的样式
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
-% 表格中的字体比正文小半号，为大五号，11pt，同时表格中的行距为 1.4 倍行距
-
-% 重定义 tabular 环境
-% \let\HUST@tabular\tabular
-% \renewcommand\tabular{\dawu[1.4]\HUST@tabular}
-% \let\endHUST@tabular\endtabular
-
-% 重定义 tabular* 环境
-% \@namedef{tabular*}#1{\dawu[1.4]%
-%   \setlength\dimen@{#1}%
-%   \edef\@halignto{to\the\dimen@}\@tabular}
-
-% 设置标题样式
+% Set caption format
 \long\def\@makecaption#1#2{%
-  % 图表标题字体比正文小半号，为大五号，11pt
-  \dawu 
+  \zihao{-5}
   \rmfamily
   \vskip\abovecaptionskip
-  % 去掉图表号后面的":"
+  % Drop the colon after table number
   \setbox\@tempboxa\hbox{#1~~#2}%
   \ifdim \wd\@tempboxa >\hsize
-  % 如果图表标题的长度超过一行，则采用悬挂缩进的方式
+  % if caption needs more than one line to display, use hangform
   \@hangfrom{#1~~}#2
   \else
-  % 如果图表标题的长度不超过一行，则采用居中方式
+  % else centering
   \global \@minipagefalse
   \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
   \fi
   \vskip\belowcaptionskip}
 
-% 设置标题标签的样式
+% set caption format
 \def\thefigure{\@arabic\c@figure}
 \def\fnum@figure{\figurename~\thefigure}
 \def\thetable{\@arabic\c@table}
 \def\fnum@table{\tablename~\thetable}
 
-% 设置标题前后间距
+% set caption skip
 \setlength\abovecaptionskip{12bp}
 \setlength\belowcaptionskip{12bp}
 
-% 下面两条命令可以使标题编号随着每开始新的一章而重新开始，即按章的顺序编号
+% table and figure will be numbered within chapter
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
-% \renewcommand{\thesubfigure}{\thefigure--(\arabic{subfigure})}
-% 定制引用子图的标记形式
+\renewcommand{\thesubfigure}{\thefigure--(\arabic{subfigure})}
+
+% customize the format for subfigure reference
 % \renewcommand{\p@subfigure}{:}
 
-% 定义新命令\hlinewd 来改变水平线的粗细
+% use \hlinewd to change the horizontal line width
 \def\hlinewd#1{%
   \noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
   \reserved@a\@xhline}
 
-% 表格行间距增大10%
+% add 10% to line skip between table rows
 \renewcommand{\arraystretch}{1.1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
