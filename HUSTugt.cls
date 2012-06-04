@@ -173,18 +173,31 @@
 % add 10% to line skip between table rows
 \renewcommand{\arraystretch}{1.1}
 
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage}
+% \fancyhead{} % clear all header fields
+% \fancyfoot{} % clear all footer fields
+% \fancyfoot[RE,RO]{\thepage}
+
+\fancypagestyle{plain}{%
+  \fancyhf{} % clear all header and footer fields
+  \fancyfoot[R]{\thepage} % except the center
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Customize cover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\makecover}{
   \begin{titlepage}
     \HUST@ctitlepage
+    \clearpage{\pagestyle{empty}\cleardoublepage}
+    \thispagestyle{empty}
   \end{titlepage}
   \pagenumbering{Roman}
-  % \begin{titlepage}
-    % \HUST@ctitlepage
-    % \clearpage\thispagestyle{empty}\HUST@etitlepage
-  % \end{titlepage}
   \addtocontents{toc}{\cftpagenumberson{chapter}}
   \HUST@makeabstract
   \cleardoublepage
@@ -247,11 +260,11 @@
 \newcommand{\HUST@makeabstract}{%
 
   % Chinese abstract
-  \clearpage
+  \cleardoublepage
   \setcounter{page}{1}
   \phantomsection
-  \addcontentsline{toc}{chapter}{摘\hspace{2em}要}
-  \chapter*{摘\hspace{2em}要}
+  \addcontentsline{toc}{chapter}{摘\hspace{1.5em}要}
+  \chapter*{摘\hspace{1.5em}要}
   \HUST@cabstract
 
   \vspace{3ex}
@@ -326,22 +339,6 @@ numberformat={\zihao{-4}\bfseries}, aftername={\quad}]{subsection}
 \setlength{\cftsecindent}{0em}
 
 
-\RequirePackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\rfoot{\thepage}
-% \fancyhead{} % clear all header fields
-% \fancyfoot{} % clear all footer fields
-% \fancyfoot[RE,RO]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-\fancypagestyle{plain}{%
-  \fancyhf{} % clear all header and footer fields
-  \fancyfoot[R]{\thepage} % except the center
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0pt}
-}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Rename English phases to Chinese ones
