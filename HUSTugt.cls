@@ -69,11 +69,6 @@
   \setmathrm{Latin Modern Math}
 \fi
 
-\setCJKmainfont[ItalicFont={KaiTi}]{SimSun}
-\setCJKsansfont{SimHei}
-\setCJKmonofont*{Fangsong}
-\xeCJKsetcharclass{"0}{"2E7F}{0}
-\xeCJKsetcharclass{"2E80}{"FFFF}{1}
 
 % List bibliography in ToC
 \RequirePackage[nottoc]{tocbibind}
