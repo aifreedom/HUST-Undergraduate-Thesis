@@ -361,19 +361,5 @@ today = big]
 \newcommand{\@eabstractname}{Abstract}
 \newcommand{\equname}{式}
 
-% "把所有文献的号码连方括号一并放在加注处的右上角"
+% Define \citeu for upper corner citation
 \newcommand{\citeu}[1]{$^{\mbox{\protect \scriptsize \cite{#1}}}$}
-
-
-% \renewcommand\contentsname{目\hspace{2em}录}
-% \renewcommand\listfigurename{插图索引}
-
-% {\renewcommand\refname{参考文献}}
-% {\renewcommand\bibname{参考文献}}
-
-% \renewcommand\indexname{索引}
-% \renewcommand\figurename{图}
-% \renewcommand\tablename{表}
-
-
-
