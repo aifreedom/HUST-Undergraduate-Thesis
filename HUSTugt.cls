@@ -22,10 +22,10 @@
 
 \newif\ifHUST@LMMath
 \DeclareOption{LM-Math}{\HUST@LMMathtrue}
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{book}}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{ctexbook}}
 
 \ProcessOptions
-\LoadClass[12pt, a4paper, openany, nocap]{ctexbook}
+\LoadClass[12pt, a4paper, nocap]{ctexbook}
 
 \RequirePackage{ifthen}
 \RequirePackage{calc}
@@ -187,7 +187,7 @@
   % \end{titlepage}
   \addtocontents{toc}{\cftpagenumberson{chapter}}
   \HUST@makeabstract
-  \clearpage
+  \cleardoublepage
   \tableofcontents
   \mainmatter
 }
@@ -260,7 +260,7 @@
   \end{tabular}
   
   % English abstract
-  \clearpage
+  \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{Abstract}
   \normalsize
@@ -274,7 +274,7 @@
 }
 
 \renewcommand\mainmatter{%
-  \clearpage
+  \cleardoublepage
   \@mainmattertrue
   \addtocontents{toc}{\cftpagenumbersoff{chapter}}
   \pagenumbering{arabic}
