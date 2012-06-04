@@ -158,7 +158,7 @@
 
 % table and figure will be numbered within chapter
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
-\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 \renewcommand{\thesubfigure}{\thefigure--(\arabic{subfigure})}
 
 % customize the format for subfigure reference
