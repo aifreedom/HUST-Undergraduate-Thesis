@@ -31,6 +31,21 @@
 \RequirePackage{calc}
 
 \RequirePackage[bookmarks]{hyperref}
+\hypersetup{%
+  CJKbookmarks=true,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  breaklinks=true,
+  colorlinks=true, % avoid boxes
+  citecolor=black,
+  linkcolor=black,
+  anchorcolor=black,
+  filecolor=black,
+  menucolor=black,
+  pagecolor=black,
+  urlcolor=black,
+  plainpages=false,
+  pdfstartview=FitH}
 
 % Load AMSLaTeX macro for more mathematical support
 \RequirePackage{amsmath, amssymb}
