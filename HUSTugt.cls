@@ -361,6 +361,10 @@ today = big]
 \newcommand{\@eabstractname}{Abstract}
 \newcommand{\equname}{式}
 
+% "把所有文献的号码连方括号一并放在加注处的右上角"
+\newcommand{\citeu}[1]{$^{\mbox{\protect \scriptsize \cite{#1}}}$}
+
+
 % \renewcommand\contentsname{目\hspace{2em}录}
 % \renewcommand\listfigurename{插图索引}
 
