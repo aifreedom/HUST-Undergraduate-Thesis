@@ -98,38 +98,6 @@
 % 1.415 is chosen for 1.25x line height after experiments
 \linespread{1.415}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% 重定义字号命令，采用薛瑞尼版本中关于字号命令的定义，
-% 消除了字体大小和行距的紧耦合
-% 命令中的可选参数用于指定行距，默认为单倍行距。
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
-% \newlength\HUST@linespace
-% \newcommand{\HUST@choosefont}[2]{%
-%   \setlength{\HUST@linespace}{#2*\real{#1}}%
-%   \fontsize{#2}{\HUST@linespace}\selectfont}
-% \newcommand{\chuhao}[1][\baselinestretch]{\HUST@choosefont{#1}{42pt}}
-% \newcommand{\xiaochu}[1][\baselinestretch]{\HUST@choosefont{#1}{36pt}}
-% \newcommand{\yihao}[1][\baselinestretch]{\HUST@choosefont{#1}{26pt}}
-% \newcommand{\xiaoyi}[1][\baselinestretch]{\HUST@choosefont{#1}{24pt}}
-% \newcommand{\erhao}[1][\baselinestretch]{\HUST@choosefont{#1}{22pt}}
-% \newcommand{\xiaoer}[1][\baselinestretch]{\HUST@choosefont{#1}{18pt}}
-% \newcommand{\sanhao}[1][\baselinestretch]{\HUST@choosefont{#1}{16pt}}
-% \newcommand{\xiaosan}[1][\baselinestretch]{\HUST@choosefont{#1}{15pt}}
-% \newcommand{\sihao}[1][\baselinestretch]{\HUST@choosefont{#1}{14pt}}
-% \newcommand{\banxiaosi}[1][\baselinestretch]{\HUST@choosefont{#1}{13pt}}
-% \newcommand{\xiaosi}[1][\baselinestretch]{\HUST@choosefont{#1}{12pt}}
-% \newcommand{\dawu}[1][\baselinestretch]{\HUST@choosefont{#1}{11pt}}
-% \newcommand{\wuhao}[1][\baselinestretch]{\HUST@choosefont{#1}{10.5pt}}
-% \newcommand{\xiaowu}[1][\baselinestretch]{\HUST@choosefont{#1}{9pt}}
-% \newcommand{\liuhao}[1][\baselinestretch]{\HUST@choosefont{#1}{7.5pt}}
-% \newcommand{\xiaoliu}[1][\baselinestretch]{\HUST@choosefont{#1}{6.5pt}}
-% \newcommand{\qihao}[1][\baselinestretch]{\HUST@choosefont{#1}{5.5pt}}
-% \newcommand{\bahao}[1][\baselinestretch]{\HUST@choosefont{#1}{5pt}}
-
-% Text font is Xiaosi(12 pt), line height is 15 pt (15/12 = 1.25)
-% \renewcommand\normalsize{\fontsize{12pt}{15pt}\selectfont}
-
 % Set caption format
 \long\def\@makecaption#1#2{%
   \zihao{-5}
