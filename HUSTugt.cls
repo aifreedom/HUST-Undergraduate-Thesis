@@ -95,15 +95,16 @@
 \RequirePackage[nottoc]{tocbibind}
 
 % Set the layout
-\setlength{\textwidth}{\paperwidth}
-\setlength{\textheight}{\paperheight} 
+% \setlength{\textwidth}{\paperwidth}
+% \setlength{\textheight}{\paperheight} 
 % \setlength{\marginparwidth}{0cm} 
 % \setlength{\marginparsep}{0cm} 
-\addtolength{\textwidth}{-5.6cm} 
-\setlength{\oddsidemargin}{2.8cm-1in} 
-\setlength{\evensidemargin}{\oddsidemargin} 
-\setlength{\skip\footins}{15pt} 
-\addtolength{\textheight}{-7.0cm} 
+% \addtolength{\textwidth}{-5.6cm} 
+% \setlength{\oddsidemargin}{2.8cm-1in} 
+% \setlength{\evensidemargin}{\oddsidemargin} 
+% \setlength{\skip\footins}{15pt} 
+% \addtolength{\textheight}{-7.0cm} 
+\RequirePackage{fullpage}
 \setlength{\footskip}{1.3cm} 
 \setlength{\topmargin}{2cm-1in}
 \setlength{\headheight}{0.9cm} 
@@ -156,7 +157,7 @@
 % add 10% to line skip between table rows
 \renewcommand{\arraystretch}{1.1}
 
-
+\pagestyle{fancy}
 \newcommand{\HUST@hdr}{%
   \fancyhf{}
   \ifHUST@openany
@@ -175,7 +176,6 @@
   \renewcommand{\footrulewidth}{0pt}
 }
 
-\pagestyle{fancy}
 % pages other than chapter first page
 \HUST@hdr
 
