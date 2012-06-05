@@ -22,10 +22,18 @@
 
 \newif\ifHUST@LMMath
 \DeclareOption{LM-Math}{\HUST@LMMathtrue}
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{ctexbook}}
 
+\newif\ifHUST@openany
+\DeclareOption{openany}{\HUST@openanytrue}
+  
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{ctexbook}}
 \ProcessOptions
-\LoadClass[12pt, a4paper, nocap]{ctexbook}
+
+\ifHUST@openany
+\LoadClass[12pt, a4paper, nocap, fancyhdr, openany]{ctexbook}
+\else
+\LoadClass[12pt, a4paper, nocap, fancyhdr]{ctexbook}
+\fi
 
 \RequirePackage{ifthen}
 \RequirePackage{calc}
@@ -141,20 +149,24 @@
 % add 10% to line skip between table rows
 \renewcommand{\arraystretch}{1.1}
 
-\RequirePackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\rfoot{\thepage}
-% \fancyhead{} % clear all header fields
-% \fancyfoot{} % clear all footer fields
-% \fancyfoot[RE,RO]{\thepage}
 
-\fancypagestyle{plain}{%
-  \fancyhf{} % clear all header and footer fields
-  \fancyfoot[R]{\thepage} % except the center
+\newcommand{\HUST@hdr}{%
+  \fancyhf{}
+  \ifHUST@openany
+  \rfoot{\thepage}
+  \else
+  \fancyfoot[LE,RO]{\thepage}
+  \fi
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }
+
+\pagestyle{fancy}
+% pages other than chapter first page
+\HUST@hdr
+
+% chapter first page
+\fancypagestyle{plain}{\HUST@hdr}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Customize cover
@@ -162,13 +174,21 @@
 \newcommand{\makecover}{
   \begin{titlepage}
     \HUST@ctitlepage
+    \ifHUST@openany
+    \clearpage{}
+    \else
     \clearpage{\pagestyle{empty}\cleardoublepage}
+    \fi
     \thispagestyle{empty}
   \end{titlepage}
   \pagenumbering{Roman}
   \addtocontents{toc}{\cftpagenumberson{chapter}}
   \HUST@makeabstract
+  \ifHUST@openany
+  \clearpage
+  \else
   \cleardoublepage
+  \fi
   \tableofcontents
   \mainmatter
 }
@@ -228,7 +248,11 @@
 \newcommand{\HUST@makeabstract}{%
 
   % Chinese abstract
+  \ifHUST@openany
+  \clearpage
+  \else
   \cleardoublepage
+  \fi
   \setcounter{page}{1}
   \phantomsection
   \addcontentsline{toc}{chapter}{摘\hspace{1.5em}要}
@@ -241,7 +265,11 @@
   \end{tabular}
   
   % English abstract
+  \ifHUST@openany
+  \clearpage
+  \else
   \cleardoublepage
+  \fi
   \phantomsection
   \addcontentsline{toc}{chapter}{Abstract}
   \normalsize
@@ -255,7 +283,11 @@
 }
 
 \renewcommand\mainmatter{%
+  \ifHUST@openany
+  \clearpage
+  \else
   \cleardoublepage
+  \fi
   \@mainmattertrue
   \addtocontents{toc}{\cftpagenumbersoff{chapter}}
   \pagenumbering{arabic}
