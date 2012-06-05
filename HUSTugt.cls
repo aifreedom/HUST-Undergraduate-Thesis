@@ -26,6 +26,9 @@
 \newif\ifHUST@openany
 \DeclareOption{openany}{\HUST@openanytrue}
   
+\newif\ifHUST@header
+\DeclareOption{header}{\HUST@headertrue}
+
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{ctexbook}}
 \ProcessOptions
 
@@ -34,6 +37,7 @@
 \else
 \LoadClass[12pt, a4paper, nocap, fancyhdr]{ctexbook}
 \fi
+
 
 \RequirePackage{ifthen}
 \RequirePackage{calc}
@@ -90,18 +94,18 @@
 % Set the layout
 \setlength{\textwidth}{\paperwidth}
 \setlength{\textheight}{\paperheight} 
-\setlength{\marginparwidth}{0cm} 
-\setlength{\marginparsep}{0cm} 
+% \setlength{\marginparwidth}{0cm} 
+% \setlength{\marginparsep}{0cm} 
 \addtolength{\textwidth}{-5.6cm} 
 \setlength{\oddsidemargin}{2.8cm-1in} 
 \setlength{\evensidemargin}{\oddsidemargin} 
-\setlength{\headheight}{0.9cm} 
-\setlength{\topskip}{0pt} 
 \setlength{\skip\footins}{15pt} 
-\setlength{\footskip}{1.3cm} 
-\setlength{\topmargin}{3.0cm-1in} 
-\setlength{\headsep}{0.5cm} 
 \addtolength{\textheight}{-7.0cm} 
+\setlength{\footskip}{1.3cm} 
+\setlength{\topmargin}{2cm-1in}
+\setlength{\headheight}{0.9cm} 
+\setlength{\topskip}{0pt}
+\setlength{\headsep}{0.9cm} 
 
 % 1.415 is chosen for 1.25x line height after experiments
 \linespread{1.415}
@@ -157,7 +161,14 @@
   \else
   \fancyfoot[LE,RO]{\thepage}
   \fi
+
+  \ifHUST@header
+  \fancyhead[C]{{\ziju{1} \zihao{4} \kaishu 华中科技大学毕业设计论文}}
+  \renewcommand{\headrulewidth}{1mm}
+  \else
   \renewcommand{\headrulewidth}{0pt}
+  \fi
+  
   \renewcommand{\footrulewidth}{0pt}
 }
 
