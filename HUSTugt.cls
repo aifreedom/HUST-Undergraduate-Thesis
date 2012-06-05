@@ -29,6 +29,9 @@
 \newif\ifHUST@header
 \DeclareOption{header}{\HUST@headertrue}
 
+\newif\ifHUST@titlepage
+\DeclareOption{titlepage}{\HUST@titlepagetrue}
+
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{ctexbook}}
 \ProcessOptions
 
@@ -183,6 +186,8 @@
 % Customize cover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\makecover}{
+  % if generate title page
+  \ifHUST@titlepage
   \begin{titlepage}
     \HUST@ctitlepage
     \ifHUST@openany
@@ -192,6 +197,8 @@
     \fi
     \thispagestyle{empty}
   \end{titlepage}
+  \fi
+  
   \pagenumbering{Roman}
   \addtocontents{toc}{\cftpagenumberson{chapter}}
   \HUST@makeabstract
