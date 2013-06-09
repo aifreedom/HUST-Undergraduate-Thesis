@@ -78,8 +78,11 @@
 \setCJKmainfont[ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont{SimHei}
 \setCJKmonofont*{FangSong}
-\xeCJKsetcharclass{"0}{"2E7F}{0}
-\xeCJKsetcharclass{"2E80}{"FFFF}{1}
+% Consistent text and math typography (Times New Roman)
+\usepackage{newtxmath}
+% CJK punctuation positioning
+% \xeCJKsetcharclass{"0}{"2E7F}{0}
+% \xeCJKsetcharclass{"2E80}{"FFFF}{1}
 
 % Require XeLaTeX
 \RequirePackage{fontspec,xltxtra,xunicode}
