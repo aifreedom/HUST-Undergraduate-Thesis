@@ -81,6 +81,9 @@
 \xeCJKsetcharclass{"0}{"2E7F}{0}
 \xeCJKsetcharclass{"2E80}{"FFFF}{1}
 
+% Times New Roman for Math
+\usepackage{newtxmath}
+
 % Require XeLaTeX
 \RequirePackage{fontspec,xltxtra,xunicode}
 \setmainfont[Mapping=tex-text]{Times New Roman}
